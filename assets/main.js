@@ -47,3 +47,29 @@ function makeQuestions() {
         answerBtn = answerChoices.appendChild(nextChoice).setAttribute("class", "p-3 m-1 btn btn-light btn-block");
     }
 }
+
+function displayScore() {
+    document.getElementById("quiz").classList.add('d-none');
+    document.getElementById("submit-score").classList.remove('d-none');
+    userScoreEl.textContent = "Your final score is " + secondsLeft + ".";
+}
+
+function addScore () {
+    userNameInput = document.getElementById("userName").value;
+    var newScore = {
+        name: userNameInput,
+        score: secondsLeft
+    };
+    var highScores = JSON.parse(localStorage.getItem("highScores") || "[]");
+    highScores.push(newScore)
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+}
+
+
+startBtn.addEventListener("click", startTimer);
+submitBtn.addEventListener("click", function (event) {
+    event.stopPropagation();
+    addScore();
+    
+    window.location.href = './highscores.html'
+});
