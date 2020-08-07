@@ -18,6 +18,7 @@ function startTimer() {
     setTimer();
     makeQuestions();
 }
+
 function setTimer() {
 
     var countdown = setInterval(function () {
@@ -72,4 +73,20 @@ submitBtn.addEventListener("click", function (event) {
     addScore();
     
     window.location.href = './highscores.html'
+});
+
+answerChoices.addEventListener("click", function (event) {
+    var pEl= document.getElementsByClassName("feedback")[0]
+    
+    if (answer === event.target.textContent) {   
+        pEl.innerHTML = "Correct!";
+        setTimeout(hideFeedback,1000);
+        showFeedback();   
+    } else {
+        pEl.innerHTML = "Sorry, that's incorrect.";
+        setTimeout(hideFeedback,1000);
+        secondsLeft = secondsLeft - 10;
+        showFeedback();
+    }    
+    makeQuestions();
 });
