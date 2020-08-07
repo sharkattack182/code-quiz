@@ -18,3 +18,15 @@ function startTimer() {
     setTimer();
     makeQuestions();
 }
+function setTimer() {
+
+    var countdown = setInterval(function () {
+        secondsLeft--;
+        timerEl.textContent = "Time: " + secondsLeft;
+
+        if (secondsLeft === 0 || questionNumber === questions.length) {
+            clearInterval(countdown);
+            setTimeout(displayScore, 500);
+        }
+    }, 1000);
+}
