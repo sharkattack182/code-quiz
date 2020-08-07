@@ -30,3 +30,20 @@ function setTimer() {
         }
     }, 1000);
 }
+
+function makeQuestions() {
+    questionNumber++;
+    answer = questions[questionNumber].answer
+
+    questionHead.textContent = questions[questionNumber].title;
+    answerChoices.innerHTML = "";
+
+    var choices = questions[questionNumber].choices;
+
+    for (var q = 0; q < choices.length; q++) {
+        var nextChoice = document.createElement("button");
+
+        nextChoice.textContent = choices[q]
+        answerBtn = answerChoices.appendChild(nextChoice).setAttribute("class", "p-3 m-1 btn btn-light btn-block");
+    }
+}
