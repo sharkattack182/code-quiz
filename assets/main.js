@@ -1,6 +1,6 @@
 var startBtn = document.getElementById("startBtn");
 var submitBtn = document.querySelector("button.submitBtn")
-var secondsLeft = (questions.length * 15 + 1);
+var secondsLeft = (quizQuestions.length * 15 + 1);
 var submitScoreEl = document.querySelector("#submit-score");
 var timerEl = document.getElementById("timer");
 var questionHead = document.getElementById("questions");
@@ -25,7 +25,7 @@ function setTimer() {
         secondsLeft--;
         timerEl.textContent = "Time: " + secondsLeft;
 
-        if (secondsLeft === 0 || questionNumber === questions.length) {
+        if (secondsLeft === 0 || questionNumber === quizQuestions.length) {
             clearInterval(countdown);
             setTimeout(displayScore, 500);
         }
@@ -34,17 +34,17 @@ function setTimer() {
 
 function makeQuestions() {
     questionNumber++;
-    answer = questions[questionNumber].answer
+    answer = quizQuestions[questionNumber].answer
 
-    questionHead.textContent = questions[questionNumber].title;
+    questionHead.textContent = quizQuestions[questionNumber].title;
     answerChoices.innerHTML = "";
 
-    var choices = questions[questionNumber].choices;
+    var choices = quizQuestions[questionNumber].choices;
 
-    for (var q = 0; q < choices.length; q++) {
+    for (var i = 0; i < choices.length; i++) {
         var nextChoice = document.createElement("button");
 
-        nextChoice.textContent = choices[q]
+        nextChoice.textContent = choices[i]
         answerBtn = answerChoices.appendChild(nextChoice).setAttribute("class", "p-3 m-1 btn btn-light btn-block");
     }
 }
@@ -68,11 +68,12 @@ function addScore () {
 
 
 startBtn.addEventListener("click", startTimer);
+
 submitBtn.addEventListener("click", function (event) {
     event.stopPropagation();
     addScore();
     
-    window.location.href = './highscores.html'
+    window.location.href =  "highscores.html"
 });
 
 answerChoices.addEventListener("click", function (event) {
@@ -90,3 +91,13 @@ answerChoices.addEventListener("click", function (event) {
     }    
     makeQuestions();
 });
+
+function hideFeedback(){
+    var pEl= document.getElementsByClassName("feedback")[0]
+    pEl.style.display='none'
+}
+
+function showFeedback(){
+    var pEl= document.getElementsByClassName("feedback")[0]
+    pEl.removeAttribute('style');
+}
