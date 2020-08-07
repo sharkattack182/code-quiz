@@ -85,7 +85,7 @@ answerChoices.addEventListener("click", function (event) {
     } else {
         pEl.innerHTML = "Sorry, that's incorrect.";
         setTimeout(hideFeedback,1000);
-        secondsLeft = secondsLeft - 10;
+        secondsLeft = secondsLeft - 5;
         showFeedback();
     }    
     makeQuestions();
