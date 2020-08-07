@@ -10,3 +10,11 @@ var userNameInput;
 
 var questionNumber = -1;
 var answer;
+
+function startTimer() {
+    document.getElementById("home").classList.add('d-none');
+    document.getElementById("quiz").classList.remove('d-none');
+
+    setTimer();
+    makeQuestions();
+}
